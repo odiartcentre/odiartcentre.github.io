@@ -1,11 +1,74 @@
-<h1 id="name"></h1>
-<img id="image" width="400">
-<p id="desc"></p>
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f0f0f0;
+display:flex;
+justify-content:center;
+}
+
+.container{
+max-width:700px;
+width:100%;
+background:white;
+padding:20px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.title{
+text-align:center;
+font-size:28px;
+margin-bottom:20px;
+}
+
+.art-image{
+display:block;
+margin:auto;
+max-width:100%;
+height:auto;
+border-radius:6px;
+}
+
+.description{
+margin-top:20px;
+font-size:18px;
+line-height:1.6;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="name" class="title"></h1>
+
+<img id="image" class="art-image">
+
+<p id="desc" class="description"></p>
+
+</div>
 
 <script>
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
+
+if(!id){
+document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on the artwork</h2>";
+throw new Error("No ID");
+}
 
 fetch("https://opensheet.elk.sh/1MMroigh5CcNq-llBXa4BmPnJgG9sX5Pyhqj-Icmu7WU/Sheet1")
 .then(res => res.json())
@@ -14,7 +77,7 @@ fetch("https://opensheet.elk.sh/1MMroigh5CcNq-llBXa4BmPnJgG9sX5Pyhqj-Icmu7WU/She
 const item = data.find(row => row.id == id);
 
 if(!item){
-document.body.innerHTML = "Artifact not found";
+document.body.innerHTML = "<h2>Artifact not found</h2>";
 return;
 }
 
@@ -25,3 +88,6 @@ document.getElementById("desc").innerText = item.description;
 });
 
 </script>
+
+</body>
+</html>
