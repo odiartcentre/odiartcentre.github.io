@@ -1,0 +1,18 @@
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+fetch("https://opensheet.elk.sh/1MMroigh5CcNq-llBXa4BmPnJgG9sX5Pyhqj-Icmu7WU/1")
+.then(res => res.json())
+.then(data => {
+
+const item = data.find(row => row.id === id);
+
+document.getElementById("name").innerText = item.name;
+document.getElementById("image").src = item.image;
+document.getElementById("desc").innerText = item.description;
+
+});
+
+</script>
