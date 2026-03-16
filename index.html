@@ -1,7 +1,10 @@
-<script>
-
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
+
+if(!id){
+document.body.innerHTML = "<h1>Odi Art Centre</h1><p>Scan the QR code on the artifact to view details.</p>";
+throw new Error("No ID provided");
+}
 
 fetch("https://opensheet.elk.sh/1MMroigh5CcNq-llBXa4BmPnJgG9sX5Pyhqj-Icmu7WU/1")
 .then(res => res.json())
@@ -10,7 +13,7 @@ fetch("https://opensheet.elk.sh/1MMroigh5CcNq-llBXa4BmPnJgG9sX5Pyhqj-Icmu7WU/1")
 const item = data.find(row => row.id === id);
 
 if(!item){
-document.body.innerHTML="Artifact not found";
+document.body.innerHTML = "<h2>Artifact not found</h2>";
 return;
 }
 
@@ -19,5 +22,3 @@ document.getElementById("image").src = item.image;
 document.getElementById("desc").innerText = item.description;
 
 });
-
-</script>
