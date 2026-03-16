@@ -35,6 +35,12 @@ margin:auto;
 max-width:100%;
 height:auto;
 border-radius:6px;
+
+/* prevent download tricks */
+user-select:none;
+-webkit-user-drag:none;
+-webkit-touch-callout:none;
+pointer-events:none;
 }
 
 .description{
@@ -62,6 +68,25 @@ text-align:center;
 
 <script>
 
+/* Disable Right Click */
+document.addEventListener("contextmenu", function(e){
+e.preventDefault();
+});
+
+/* Disable Dragging */
+document.addEventListener("dragstart", function(e){
+e.preventDefault();
+});
+
+/* Disable F12 Dev Tools (basic protection) */
+document.addEventListener("keydown", function(e){
+if(e.keyCode == 123){
+e.preventDefault();
+}
+});
+
+/* Artifact loading system */
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
@@ -77,7 +102,7 @@ fetch("https://opensheet.elk.sh/1MMroigh5CcNq-llBXa4BmPnJgG9sX5Pyhqj-Icmu7WU/She
 const item = data.find(row => row.id == id);
 
 if(!item){
-document.body.innerHTML = "<h2>Artifact not found</h2>";
+document.body.innerHTML = "<h2 style='text-align:center'>Artifact not found</h2>";
 return;
 }
 
