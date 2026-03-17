@@ -49,7 +49,7 @@ font-size:18px;
 line-height:1.6;
 text-align:center;
 }
-  
+
 </style>
 
 </head>
@@ -65,7 +65,7 @@ text-align:center;
 <p id="desc" class="description"></p>
 
 </div>
-  
+
 <script>
 
 /* Disable Right Click */
@@ -91,23 +91,13 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 if(!id){
-document.body.innerHTML = "<h2 style='text-align:center>Scan QR on the artwork</h2>";
-return;
+document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on the artwork</h2>";
+throw new Error("No ID");
 }
 
 fetch("data.json")
-.then(res => {
-console.log("Response:", res);
-
-if(!res.ok){
-throw new Error("JSON not found");
-}
-
-return res.json();
-})
+.then(res => res.json())
 .then(data => {
-
-console.log("Data:", data);
 
 const item = data.find(row => row.id == id);
 
@@ -120,12 +110,8 @@ document.getElementById("name").innerText = item.name;
 document.getElementById("image").src = item.image;
 document.getElementById("desc").innerText = item.description;
 
-})
-.catch((err) => {
-console.log("ERROR:", err);
-document.body.innerHTML = "<h2>Error loading data. Please scan again.</h2>";
 });
-  
+
 </script>
 
 </body>
