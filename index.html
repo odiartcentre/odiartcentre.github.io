@@ -50,30 +50,29 @@ line-height:1.6;
 text-align:center;
 }
   
-.scan-line{
-width:200px;
-height:4px;
-background:#ddd;
-margin:20px auto;
-position:relative;
-overflow:hidden;
-border-radius:2px;
-}
-
-.scan-line::before{
-content:"";
-position:absolute;
-top:0;
-left:-50%;
-width:50%;
-height:100%;
+.credit-bar{
+position:fixed;
+bottom:0;
+width:100%;
 background:red;
-animation:scanMove 1.5s linear infinite;
+color:white;
+overflow:hidden;
+white-space:nowrap;
 }
 
-@keyframes scanMove{
-0%{ left:-50%; }
-100%{ left:100%; }
+.credit-bar span{
+display:inline-block;
+padding:10px;
+animation:scrollText 15s linear infinite;
+}
+
+@keyframes scrollText{
+0%{
+transform:translateX(100%);
+}
+100%{
+transform:translateX(-100%);
+}
 }
   
 </style>
@@ -117,12 +116,13 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 if(!id){
-document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on the artwork</h2>";
 document.body.innerHTML = `
-<div style="text-align:center;margin-top:100px;font-family:Arial;">
-  <h2>website made by Saurav Panda aka @dearlipu.</h2>
+<div style="text-align:center;padding:40px;">
+<h2>Scan QR on the artwork</h2>
+</div>
 
-  <div class="scan-line"></div>
+<div class="credit-bar">
+<span>Developed by Saurav Panda | Odi Art Centre Digital System</span>
 </div>
 `;
 throw new Error("No ID");
