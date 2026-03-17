@@ -50,6 +50,33 @@ line-height:1.6;
 text-align:center;
 }
 
+.credit-bar{
+position:fixed;
+bottom:0;
+width:100%;
+background:#222;   /* dark modern color */
+color:#fff;
+overflow:hidden;
+white-space:nowrap;
+font-size:14px;
+}
+
+.credit-bar span{
+display:inline-block;
+padding:6px 0;   /* makes it narrow */
+animation:scrollRight 18s linear infinite;
+}
+
+/* LEFT → RIGHT movement */
+@keyframes scrollRight{
+0%{
+transform:translateX(-100%);
+}
+100%{
+transform:translateX(100%);
+}
+}
+
 </style>
 
 </head>
@@ -91,8 +118,16 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 if(!id){
-document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on the artwork</h2>";
-throw new Error("No ID");
+document.body.innerHTML = `
+<div style="text-align:center;padding:40px;">
+<h2>Scan QR on the artwork</h2>
+</div>
+
+<div class="credit-bar">
+<span>&nbsp;&nbsp; Developed by Saurav Panda aka @dearlipu | Odi Art Centre Digital System Management &nbsp;&nbsp;</span>
+</div>
+`;
+return;
 }
 
 fetch("data.json")
