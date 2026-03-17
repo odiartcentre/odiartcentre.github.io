@@ -118,15 +118,21 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 if(!id){
-document.body.innerHTML = `
+
+document.querySelector(".container").innerHTML = `
 <div style="text-align:center;padding:40px;">
 <h2>Scan QR on the artwork</h2>
 </div>
+`;
 
+if(!document.querySelector(".credit-bar")){
+document.body.insertAdjacentHTML("beforeend", `
 <div class="credit-bar">
 <span>&nbsp;&nbsp; Developed by Saurav Panda aka @dearlipu | Odi Art Centre Digital System Management &nbsp;&nbsp;</span>
 </div>
-`;
+`);
+}
+
 return;
 }
 
