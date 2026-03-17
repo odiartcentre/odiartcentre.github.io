@@ -54,24 +54,26 @@ text-align:center;
 position:fixed;
 bottom:0;
 width:100%;
-background:red;
-color:white;
+background:#222;   /* dark modern color */
+color:#fff;
 overflow:hidden;
 white-space:nowrap;
+font-size:14px;
 }
 
 .credit-bar span{
 display:inline-block;
-padding:10px;
-animation:scrollText 15s linear infinite;
+padding:6px 0;   /* makes it narrow */
+animation:scrollRight 18s linear infinite;
 }
 
-@keyframes scrollText{
+/* LEFT → RIGHT movement */
+@keyframes scrollRight{
 0%{
-transform:translateX(100%);
+transform:translateX(-100%);
 }
 100%{
-transform:translateX(-100%);
+transform:translateX(100%);
 }
 }
   
@@ -122,10 +124,10 @@ document.body.innerHTML = `
 </div>
 
 <div class="credit-bar">
-<span>Developed by Saurav Panda | Odi Art Centre Digital System</span>
+<span>&nbsp;&nbsp; Developed by Saurav Panda aka @dearlipu | Odi Art Centre Digital System Management &nbsp;&nbsp;</span>
 </div>
 `;
-throw new Error("No ID");
+return;
 }
 
 fetch("data.json")
