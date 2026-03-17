@@ -49,7 +49,33 @@ font-size:18px;
 line-height:1.6;
 text-align:center;
 }
+  
+.scan-line{
+width:200px;
+height:4px;
+background:#ddd;
+margin:20px auto;
+position:relative;
+overflow:hidden;
+border-radius:2px;
+}
 
+.scan-line::before{
+content:"";
+position:absolute;
+top:0;
+left:-50%;
+width:50%;
+height:100%;
+background:red;
+animation:scanMove 1.5s linear infinite;
+}
+
+@keyframes scanMove{
+0%{ left:-50%; }
+100%{ left:100%; }
+}
+  
 </style>
 
 </head>
@@ -65,27 +91,6 @@ text-align:center;
 <p id="desc" class="description"></p>
 
 </div>
-
-<script>
-
-function openFullscreen() {
-let elem = document.documentElement;
-
-if (elem.requestFullscreen) {
-elem.requestFullscreen();
-} 
-else if (elem.webkitRequestFullscreen) {
-elem.webkitRequestFullscreen();
-} 
-else if (elem.msRequestFullscreen) {
-elem.msRequestFullscreen();
-}
-
-}
-
-document.addEventListener("click", openFullscreen);
-
-</script>
   
 <script>
 
@@ -113,6 +118,13 @@ const id = params.get("id");
 
 if(!id){
 document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on the artwork</h2>";
+document.body.innerHTML = `
+<div style="text-align:center;margin-top:100px;font-family:Arial;">
+  <h2>website made by Saurav Panda aka @dearlipu.</h2>
+
+  <div class="scan-line"></div>
+</div>
+`;
 throw new Error("No ID");
 }
 
