@@ -68,6 +68,27 @@ text-align:center;
 
 <script>
 
+function openFullscreen() {
+let elem = document.documentElement;
+
+if (elem.requestFullscreen) {
+elem.requestFullscreen();
+} 
+else if (elem.webkitRequestFullscreen) {
+elem.webkitRequestFullscreen();
+} 
+else if (elem.msRequestFullscreen) {
+elem.msRequestFullscreen();
+}
+
+}
+
+document.addEventListener("click", openFullscreen);
+
+</script>
+  
+<script>
+
 /* Disable Right Click */
 document.addEventListener("contextmenu", function(e){
 e.preventDefault();
