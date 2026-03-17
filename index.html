@@ -95,7 +95,7 @@ document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on the artwork<
 throw new Error("No ID");
 }
 
-fetch("https://opensheet.elk.sh/1MMroigh5CcNq-llBXa4BmPnJgG9sX5Pyhqj-Icmu7WU/Sheet1")
+fetch("data.json")
 .then(res => res.json())
 .then(data => {
 
