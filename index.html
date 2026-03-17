@@ -145,6 +145,10 @@ document.getElementById("desc").innerText = item.description;
 
 });
 
+.catch(() => {
+document.body.innerHTML = "<h2>Error loading data. Please scan it again.</h2>";
+});
+  
 </script>
 
 </body>
