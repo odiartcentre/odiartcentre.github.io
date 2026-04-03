@@ -9,53 +9,73 @@
 
 body{
 margin:0;
-font-family:Arial;
-background:#f0f0f0;
+font-family:'Segoe UI', Arial, sans-serif;
+background:#eaeaea;
 display:flex;
 justify-content:center;
 }
 
+/* Card layout */
 .container{
-max-width:700px;
+max-width:650px;
 width:100%;
 background:white;
+margin:20px;
 padding:20px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.1);
 }
 
-.title{
-text-align:center;
-font-size:28px;
-margin-bottom:20px;
-}
-
+/* Image */
 .art-image{
 display:block;
 margin:auto;
 max-width:100%;
 height:auto;
-border-radius:6px;
-
-/* prevent download tricks */
-user-select:none;
--webkit-user-drag:none;
--webkit-touch-callout:none;
-pointer-events:none;
+border-radius:10px;
 }
 
-.description{
-margin-top:20px;
-font-size:18px;
-line-height:1.6;
+/* Label */
+.label{
 text-align:center;
+font-size:12px;
+color:#888;
+letter-spacing:1px;
+margin-top:10px;
 }
 
+/* Title */
+.title{
+text-align:center;
+font-size:26px;
+font-weight:600;
+margin-top:15px;
+}
+
+/* Medium */
 .medium{
 text-align:center;
-font-size:20px;
-color:#555;
-margin-top:-10px;
-margin-bottom:15px;
+font-size:18px;
+color:#666;
+margin-top:5px;
+}
+
+/* Divider */
+.divider{
+width:40px;
+height:3px;
+background:#ddd;
+margin:15px auto;
+border-radius:5px;
+}
+
+/* Description */
+.description{
+font-size:16px;
+line-height:1.6;
+text-align:center;
+color:#333;
+padding:0 10px;
 }
 
 </style>
@@ -67,8 +87,15 @@ margin-bottom:15px;
 <div class="container">
   
 <img id="image" class="art-image">
+
+<div class="label">ARTIFACT</div>
+
 <h1 id="name" class="title"></h1>
+
 <h2 id="medium" class="medium"></h2>
+
+<div class="divider"></div>
+
 <p id="desc" class="description"></p>
 
 </div>
@@ -76,45 +103,35 @@ margin-bottom:15px;
 <script>
 
 /* Disable Right Click */
-document.addEventListener("contextmenu", function(e){
-e.preventDefault();
-});
+document.addEventListener("contextmenu", e => e.preventDefault());
 
 /* Disable Dragging */
-document.addEventListener("dragstart", function(e){
-e.preventDefault();
-});
+document.addEventListener("dragstart", e => e.preventDefault());
 
-/* Disable F12 Dev Tools (basic protection) */
+/* Disable F12 */
 document.addEventListener("keydown", function(e){
-if(e.keyCode == 123){
-e.preventDefault();
-}
+if(e.keyCode == 123){ e.preventDefault(); }
 });
 
-/* Artifact loading system */
-
+/* Get ID */
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
+/* No ID → homepage */
 if(!id){
-document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on the artwork</h2>";
-throw new Error("No ID");
+document.querySelector(".container").innerHTML = `
+<h2 style="text-align:center">Scan QR on the artwork</h2>
+`;
+return;
 }
 
+/* Fetch data */
 fetch("data.json")
 .then(res => {
-console.log("Response:", res);
-
-if(!res.ok){
-throw new Error("JSON not found");
-}
-
+if(!res.ok) throw new Error("JSON not found");
 return res.json();
 })
 .then(data => {
-
-console.log("Data:", data);
 
 const item = data.find(row => row.id == id);
 
@@ -123,17 +140,17 @@ document.body.innerHTML = "<h2 style='text-align:center'>Artifact not found</h2>
 return;
 }
 
+/* Fill UI */
 document.getElementById("name").innerText = item.name;
 document.getElementById("image").src = item.image;
 document.getElementById("desc").innerText = item.description;
 document.getElementById("medium").innerText = item.medium;
 
 })
-.catch((err) => {
-console.log("ERROR:", err);
+.catch(() => {
 document.body.innerHTML = "<h2>Error loading data. Please scan again.</h2>";
 });
-  
+
 </script>
 
 </body>
