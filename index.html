@@ -66,7 +66,7 @@ margin-bottom:15px;
 
 <div class="container">
   
-<img id="image" class="art-image">
+<img id="image" class="art-image" onerror="this.src='fallback.png'">
 <h1 id="name" class="title"></h1>
 <h2 id="medium" class="medium"></h2>
 <p id="desc" class="description"></p>
@@ -99,7 +99,7 @@ const id = params.get("id");
 
 if(!id){
 document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on the artwork</h2>";
-throw new Error("No ID");
+return;
 }
 
 fetch("data.json")
@@ -107,7 +107,7 @@ fetch("data.json")
 console.log("Response:", res);
 
 if(!res.ok){
-throw new Error("JSON not found");
+return;
 }
 
 return res.json();
