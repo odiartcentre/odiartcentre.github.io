@@ -50,6 +50,14 @@ line-height:1.6;
 text-align:center;
 }
 
+.medium{
+text-align:center;
+font-size:20px;
+color:#555;
+margin-top:-10px;
+margin-bottom:15px;
+}
+
 </style>
 
 </head>
@@ -57,11 +65,10 @@ text-align:center;
 <body>
 
 <div class="container">
-
-<h1 id="name" class="title"></h1>
-
+  
 <img id="image" class="art-image">
-
+<h1 id="name" class="title"></h1>
+<h2 id="medium" class="medium"></h2>
 <p id="desc" class="description"></p>
 
 </div>
@@ -119,6 +126,7 @@ return;
 document.getElementById("name").innerText = item.name;
 document.getElementById("image").src = item.image;
 document.getElementById("desc").innerText = item.description;
+document.getElementById("medium").innerText = item.medium;
 
 })
 .catch((err) => {
