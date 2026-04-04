@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 
 <style>
   body{
@@ -97,22 +98,25 @@
 
   
     #exitBtn{
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
+      position:fixed;
+      bottom:16px;
+      left:50%;
+      transform:translateX(-50%);
+      
+      padding:12px 20px;
+      font-size:15px;
+      font-weight:500;
     
-    padding:10px 18px;
-    font-size:14px;
-    border:none;
-    border-radius:20px;
+      border:none;
+      border-radius:30px;
     
-    background:#111;
-    color:#fff;
+      background:#111;
+      color:#fff;
     
-    z-index:999;
-    opacity:0.9;
-  }
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    
+      z-index:999;
+    }
   
 </style>
 
@@ -229,14 +233,15 @@ if(!item.artist_name && !item.artist_image){
 document.body.innerHTML = "<h2 style='text-align:center'>Error loading data</h2>";
 });
 
-  document.getElementById("exitBtn").onclick = () => {
   
-  // Try go back (if opened from scanner)
-  if(document.referrer){
-    history.back();
+document.getElementById("exitBtn").onclick = () => {
+
+  // Try to go back to scanner app
+  if (window.history.length > 1) {
+    window.history.back();
   } else {
-    // fallback (your homepage or scanner page)
-    window.location.href = "https://odiartcentre.github.io/";
+    // fallback: open Google Lens (best real-world solution)
+    window.location.href = "https://lens.google.com/";
   }
 
 };
