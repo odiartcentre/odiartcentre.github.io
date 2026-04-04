@@ -2,113 +2,114 @@
 <html>
 
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-
 body{
-margin:0;
-font-family:'Segoe UI', Arial, sans-serif;
-background:#eaeaea;
-display:flex;
-justify-content:center;
+  margin:0;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  background:#fff;
+  color:#111;
 }
 
-/* Card layout */
+/* Header */
+.header{
+  font-size:18px;
+  font-weight:600;
+  padding:14px 16px;
+  border-bottom:1px solid #eee;
+}
+
+/* Container */
 .container{
-max-width:650px;
-width:100%;
-background:white;
-margin:20px;
-padding:20px;
-border-radius:12px;
-box-shadow:0 8px 25px rgba(0,0,0,0.1);
+  max-width:600px;
+  margin:auto;
+  padding:16px;
 }
 
 /* Image */
 .art-image{
-display:block;
-margin:auto;
-max-width:100%;
-height:auto;
-border-radius:10px;
-}
-
-/* Label */
-.label{
-text-align:center;
-font-size:12px;
-color:#888;
-letter-spacing:1px;
-margin-top:10px;
+  width:100%;
+  height:auto;
+  margin-bottom:16px;
 }
 
 /* Title */
 .title{
-text-align:center;
-font-size:26px;
-font-weight:600;
-margin-top:15px;
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:8px;
 }
 
-/* Medium */
-.medium{
-text-align:center;
-font-size:18px;
-color:#666;
-margin-top:5px;
+/* Meta */
+.meta{
+  font-size:14px;
+  color:#666;
+  margin-bottom:12px;
 }
 
 /* Divider */
 .divider{
-width:40px;
-height:3px;
-background:#ddd;
-margin:15px auto;
-border-radius:5px;
+  height:1px;
+  background:#eee;
+  margin:12px 0;
 }
 
 /* Description */
 .description{
-font-size:16px;
-line-height:1.6;
-text-align:center;
-color:#333;
-padding:0 10px;
+  font-size:15px;
+  line-height:1.6;
+  margin-bottom:16px;
 }
 
+/* Artist section */
+.artist-box{
+  margin-top:16px;
+}
+
+.artist-name{
+  font-size:15px;
+  font-weight:500;
+  margin-bottom:6px;
+}
+
+.artist-img{
+  width:100%;
+  max-width:200px;
+  height:auto;
+}
 </style>
 
 </head>
 
 <body>
 
+<div class="header">Odiart Centre</div>
+
 <div class="container">
-  
-<img id="image" class="art-image">
 
-<div class="label">ARTIFACT</div>
+  <img id="image" class="art-image">
 
-<h1 id="name" class="title"></h1>
+  <div id="name" class="title"></div>
 
-<h2 id="medium" class="medium"></h2>
+  <div id="meta" class="meta"></div>
 
-<div class="divider"></div>
+  <div id="divider" class="divider"></div>
 
-<p id="desc" class="description"></p>
+  <div id="desc" class="description"></div>
+
+  <div id="artistBox" class="artist-box">
+    <div id="artistName" class="artist-name"></div>
+    <img id="artistImg" class="artist-img">
+  </div>
 
 </div>
 
 <script>
 
-/* Disable Right Click */
+/* Disable right click & inspect (basic) */
 document.addEventListener("contextmenu", e => e.preventDefault());
-
-/* Disable Dragging */
 document.addEventListener("dragstart", e => e.preventDefault());
-
-/* Disable F12 */
 document.addEventListener("keydown", function(e){
 if(e.keyCode == 123){ e.preventDefault(); }
 });
@@ -117,20 +118,14 @@ if(e.keyCode == 123){ e.preventDefault(); }
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-/* No ID → homepage */
 if(!id){
-document.querySelector(".container").innerHTML = `
-<h2 style="text-align:center">Scan QR on the artwork</h2>
-`;
+document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on artwork</h2>";
 throw new Error("No ID");
 }
 
 /* Fetch data */
 fetch("data.json")
-.then(res => {
-if(!res.ok) throw new Error("JSON not found");
-return res.json();
-})
+.then(res => res.json())
 .then(data => {
 
 const item = data.find(row => row.id == id);
@@ -140,15 +135,60 @@ document.body.innerHTML = "<h2 style='text-align:center'>Artifact not found</h2>
 return;
 }
 
-/* Fill UI */
-document.getElementById("name").innerText = item.name;
-document.getElementById("image").src = item.image;
-document.getElementById("desc").innerText = item.description;
-document.getElementById("medium").innerText = item.medium;
+/* Helpers */
+const setText = (id, value) => {
+  const el = document.getElementById(id);
+  if(value && value.trim() !== ""){
+    el.innerText = value;
+  } else {
+    el.style.display = "none";
+  }
+};
+
+const setImage = (id, src) => {
+  const el = document.getElementById(id);
+  if(src){
+    el.src = src;
+  } else {
+    el.style.display = "none";
+  }
+};
+
+/* Fill Data */
+setText("name", item.name);
+setText("desc", item.description);
+
+setImage("image", item.art_image);
+setImage("artistImg", item.artist_image);
+
+setText("artistName", item.artist_name);
+
+/* Meta combine (medium + century + location) */
+let metaText = "";
+
+if(item.medium) metaText += item.medium;
+if(item.century) metaText += (metaText ? " • " : "") + item.century;
+if(item.location) metaText += (metaText ? " • " : "") + item.location;
+
+if(metaText){
+  document.getElementById("meta").innerText = metaText;
+} else {
+  document.getElementById("meta").style.display = "none";
+}
+
+/* Hide divider if no description */
+if(!item.description){
+  document.getElementById("divider").style.display = "none";
+}
+
+/* Hide artist box if no data */
+if(!item.artist_name && !item.artist_image){
+  document.getElementById("artistBox").style.display = "none";
+}
 
 })
 .catch(() => {
-document.body.innerHTML = "<h2>Error loading data. Please scan again.</h2>";
+document.body.innerHTML = "<h2 style='text-align:center'>Error loading data</h2>";
 });
 
 </script>
