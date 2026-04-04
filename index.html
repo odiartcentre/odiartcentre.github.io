@@ -31,8 +31,11 @@
     /* Smaller main image */
     .art-image{
       width:100%;
-      max-height:280px;
-      object-fit:cover;
+      max-height:320px;   /* control size */
+      object-fit:contain; /* show full image */
+      background:#f5f5f5; /* nice clean background */
+      padding:8px;          /* space around image */
+      border-radius:6px;    /* smooth edges */
       margin-bottom:16px;
     }
     
