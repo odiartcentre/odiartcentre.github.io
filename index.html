@@ -3,9 +3,6 @@
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
 
 <style>
   body{
@@ -95,34 +92,10 @@
       object-fit:cover;
       border-radius:6px;
     }
-
-  
-    #exitBtn{
-      position:fixed;
-      bottom:16px;
-      left:50%;
-      transform:translateX(-50%);
-      
-      padding:12px 20px;
-      font-size:15px;
-      font-weight:500;
-    
-      border:none;
-      border-radius:30px;
-    
-      background:#111;
-      color:#fff;
-    
-      box-shadow:0 4px 12px rgba(0,0,0,0.2);
-    
-      z-index:999;
-    }
   
 </style>
 
 </head>
-
-  <button id="exitBtn">Close</button>
   
 <body>
 
@@ -170,7 +143,7 @@ fetch("data.json")
 .then(res => res.json())
 .then(data => {
 
-const item = data.find(row => row.id == id);
+const item = data.find(row => row.public_id == id);
 
 if(!item){
 document.body.innerHTML = "<h2 style='text-align:center'>Artifact not found</h2>";
@@ -232,19 +205,6 @@ if(!item.artist_name && !item.artist_image){
 .catch(() => {
 document.body.innerHTML = "<h2 style='text-align:center'>Error loading data</h2>";
 });
-
-  
-document.getElementById("exitBtn").onclick = () => {
-
-  // Try to go back to scanner app
-  if (window.history.length > 1) {
-    window.history.back();
-  } else {
-    // fallback: open Google Lens (best real-world solution)
-    window.location.href = "https://lens.google.com/";
-  }
-
-};
 
 </script>
 
