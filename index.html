@@ -143,7 +143,7 @@ fetch("data.json")
 .then(res => res.json())
 .then(data => {
 
-const item = data.find(row => row.public_id == id);
+const item = data.find(row => row.id == id);
 
 if(!item){
 document.body.innerHTML = "<h2 style='text-align:center'>Artifact not found</h2>";
