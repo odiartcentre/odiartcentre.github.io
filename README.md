@@ -1,4 +1,3 @@
-OdiArt Centre Website
 Official website repository for OdiArt Centre.
 This project is developed and maintained for the promotion, preservation, and digital documentation of Odisha’s tribal, folk, and traditional arts and culture.
 
