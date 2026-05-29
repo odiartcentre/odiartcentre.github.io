@@ -10,7 +10,7 @@ This project is developed and maintained for the promotion, preservation, and di
 
 This project is specially developed for OdiArt Centre.
 
-Designed and developed by @dearlipu.
+Designed and developed by @dearlipu aka Saurav Panda.
 
 This source code, design structure, content arrangement, branding style, and project identity are intended only for official and educational use related to OdiArt Centre.
 
@@ -43,37 +43,6 @@ For:
 
 OdiArt Centre
 
-## About OdiArt Centre
-
-OdiArt Centre is dedicated to preserving and promoting:
-
-- Tribal Art
-- Folk Art
-- Indigenous Knowledge
-- Cultural Heritage
-- Traditional Craft Practices
-- Museum Documentation
-- Cultural Festivals and Events
-
-through digital archives, exhibitions, education, and research.
-
-## Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- GitHub Pages
-
-## Repository Purpose
-
-This repository is maintained for:
-
-- Official website hosting
-- Cultural documentation
-- Event information
-- Museum-related digital resources
-- Public educational access
-
 ## Contributions
 
 Contributions are welcome for:
@@ -84,12 +53,6 @@ Contributions are welcome for:
 - Documentation updates
 
 Before contributing, please contact the repository maintainer.
-
-## Contact
-
-Organization: OdiArt Centre
-GitHub: https://github.com/odiartcentre
-Website: https://odiartcentre.github.io/
 
 ---
 
