@@ -1,11 +1,8 @@
-```markdown
-
 # OdiArt Centre Website
 
 Official website repository for OdiArt Centre.
 
-This project is developed and maintained for the promotion, preservation, and digital documentation
-of Odisha’s tribal, folk, and traditional arts and culture.
+This project is developed and maintained for the promotion, preservation, and digital documentation of Odisha’s tribal, folk, and traditional arts and culture.
 
 ## Important Notice
 
@@ -13,8 +10,7 @@ This project is specially developed for OdiArt Centre.
 
 Designed and developed by @dearlipu aka Saurav Panda.
 
-This source code, design structure, content arrangement, branding style, and project identity are
-intended only for official and educational use related to OdiArt Centre.
+This source code, design structure, content arrangement, branding style, and project identity are intended only for official and educational use related to OdiArt Centre.
 
 ## Usage Restrictions
 
@@ -59,7 +55,3 @@ Before contributing, please contact the repository maintainer.
 ---
 
 Preserving Culture Through Digital Heritage
-
-
-
-```
