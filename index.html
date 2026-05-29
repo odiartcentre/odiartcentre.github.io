@@ -12,7 +12,6 @@
     color:#111;
   }
 
-    /* Header center */
     .header{
       font-size:18px;
       font-weight:600;
@@ -21,55 +20,48 @@
       text-align:center;
     }
     
-    /* Container */
     .container{
       max-width:600px;
       margin:auto;
       padding:16px;
-      box-sizing:border-box; /* IMPORTANT */
+      box-sizing:border-box;
     }
     
-    /* Smaller main image */
     .art-image{
       width:100%;
-      max-height:320px;   /* control size */
-      object-fit:contain; /* show full image */
-      background:#f5f5f5; /* nice clean background */
-      padding:8px;          /* space around image */
-      border-radius:6px;    /* smooth edges */
-      margin:0 auto 16px auto; /* center fix */
-      box-sizing:border-box;   /* prevents overflow */
+      max-height:320px;
+      object-fit:contain; 
+      background:#f5f5f5; 
+      padding:8px;  
+      border-radius:6px;  
+      margin:0 auto 16px auto;
+      box-sizing:border-box; 
     }
     
-    /* Title */
     .title{
       font-size:22px;
       font-weight:600;
       margin-bottom:8px;
     }
     
-    /* Meta */
     .meta{
       font-size:14px;
       color:#666;
       margin-bottom:12px;
     }
     
-    /* Divider */
     .divider{
       height:1px;
       background:#eee;
       margin:12px 0;
     }
     
-    /* Description */
     .description{
       font-size:15px;
       line-height:1.6;
       margin-bottom:16px;
     }
     
-    /* Artist layout row */
     .artist-box{
       display:flex;
       align-items:center;
@@ -80,14 +72,11 @@
       padding-top:12px;
     }
     
-    /* Artist name (left big) */
     .artist-name{
       font-size:18px;
       font-weight:600;
     }
       
-    
-    /* Artist image (right small) */
     .artist-img{
       width:60px;
       height:60px;
@@ -124,14 +113,12 @@
 
 <script>
 
-/* Disable right click & inspect (basic) */
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("dragstart", e => e.preventDefault());
 document.addEventListener("keydown", function(e){
 if(e.keyCode == 123){ e.preventDefault(); }
 });
 
-/* Get ID */
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
@@ -140,7 +127,6 @@ document.body.innerHTML = "<h2 style='text-align:center'>Scan QR on artwork</h2>
 throw new Error("No ID");
 }
 
-/* Fetch data */
 fetch("data.json")
 .then(res => res.json())
 .then(data => {
@@ -152,7 +138,6 @@ document.body.innerHTML = "<h2 style='text-align:center'>Artifact not found</h2>
 return;
 }
 
-/* Helpers */
 const setText = (id, value) => {
   const el = document.getElementById(id);
   if(value && value.trim() !== ""){
@@ -171,7 +156,6 @@ const setImage = (id, src) => {
   }
 };
 
-/* Fill Data */
 setText("name", item.name);
 setText("desc", item.description);
 
@@ -180,7 +164,6 @@ setImage("artistImg", item.artist_image);
 
 setText("artistName", item.artist_name);
 
-/* Meta combine (medium + century + location) */
 let metaText = "";
 
 if(item.medium) metaText += item.medium;
@@ -193,12 +176,10 @@ if(metaText){
   document.getElementById("meta").style.display = "none";
 }
 
-/* Hide divider if no description */
 if(!item.description){
   document.getElementById("divider").style.display = "none";
 }
 
-/* Hide artist box if no data */
 if(!item.artist_name && !item.artist_image){
   document.getElementById("artistBox").style.display = "none";
 }
