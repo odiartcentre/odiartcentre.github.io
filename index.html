@@ -13,6 +13,7 @@ window.location.hash
 }
 </script>
   
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -145,7 +146,7 @@ fetch("data.json")
 const item = data.find(row => row.id == id);
 
 if(!item){
-document.body.innerHTML = "<h2 style='text-align:center'>Artifact not found</h2>";
+document.body.innerHTML = "<h2 style='text-align:center'>Artifact not found</h2><div style='position:fixed;bottom:10px;width:100%;text-align:center;font-size:12px;color:gray;'>Developed by @dearlipu aka Saurav Panda</div>";
 return;
 }
 
