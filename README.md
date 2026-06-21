@@ -1,4 +1,4 @@
-# OdiArt Centre Website
+# Website
 
 Official website repository for OdiArt Centre.
 
