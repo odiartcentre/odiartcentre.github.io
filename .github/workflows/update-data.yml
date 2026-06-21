@@ -1,5 +1,4 @@
-name: Update JSON from Google Sheet
-
+name: Update JSON
 on:
   workflow_dispatch:
 
