@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Cloudflare</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+
+background:#f4f6fb;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+.bg{
+
+position:absolute;
+
+inset:0;
+
+background:
+
+radial-gradient(circle at top,#4f7cff22,transparent 45%),
+
+radial-gradient(circle at bottom,#7b5cff22,transparent 45%),
+
+#f4f6fb;
+
+animation:bg 8s ease-in-out infinite alternate;
+
+}
+
+@keyframes bg{
+
+from{
+
+transform:scale(1);
+
+}
+
+to{
+
+transform:scale(1.08);
+
+}
+
+}
+
+.modal{
+
+position:relative;
+
+width:min(92%,500px);
+
+background:#fff;
+
+border-radius:22px;
+
+padding:40px;
+
+box-shadow:0 30px 70px rgba(0,0,0,.18);
+
+text-align:center;
+
+animation:popup .45s ease;
+
+z-index:5;
+
+}
+
+@keyframes popup{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px) scale(.92);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+.icon{
+
+font-size:60px;
+
+margin-bottom:18px;
+
+animation:pulse 1.6s infinite;
+
+}
+
+@keyframes pulse{
+
+50%{
+
+transform:scale(1.15);
+
+}
+
+}
+
+h1{
+
+font-size:30px;
+
+margin-bottom:18px;
+
+}
+
+p{
+
+font-size:17px;
+
+color:#666;
+
+line-height:1.7;
+
+margin-bottom:28px;
+
+}
+
+.notice{
+
+background:#fff8e7;
+
+border:1px solid #f4d36b;
+
+padding:18px;
+
+border-radius:12px;
+
+font-size:15px;
+
+line-height:1.6;
+
+margin-bottom:30px;
+
+}
+
+.buttons{
+
+display:flex;
+
+gap:14px;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+a,button{
+
+padding:14px 28px;
+
+border-radius:10px;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.25s;
+
+text-decoration:none;
+
+}
+
+.renew{
+
+background:#0057ff;
+
+color:#fff;
+
+}
+
+.renew:hover{
+
+background:#0043cc;
+
+transform:translateY(-2px);
+
+}
+
+.continue{
+
+background:#ececec;
+
+border:none;
+
+}
+
+.continue:hover{
+
+background:#dcdcdc;
+
+}
+
+.footer{
+
+margin-top:28px;
+
+font-size:13px;
+
+color:#888;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="modal">
+
+<div class="icon">
+
+⚠️
+
+</div>
+
+<h1>
+
+Hosting Subscription Expiring Soon
+
+</h1>
+
+<p>
+
+The digital artwork information service is scheduled to become unavailable unless the hosting subscription is renewed.
+
+</p>
+
+<div class="notice">
+
+Visitors can continue viewing the artwork by clicking <b>Continue to Artwork</b>.
+
+</div>
+
+<div class="buttons">
+
+<a class="renew"
+
+href="https://www.cloudflare.com/en-in/products/registrar/"
+
+target="_blank">
+
+Renew Now
+
+</a>
+
+<button
+
+class="continue"
+
+onclick="continueArtwork()">
+
+Continue to Artwork
+
+</button>
+
+</div>
+
+<div class="footer">
+
+Cloudflare Digital Collection Cloud
+
+</div>
+
+</div>
+
+<script>
+
+function continueArtwork(){
+
+const query=window.location.search;
+
+window.location.href="artwork.html"+query;
+
+}
+
+</script>
+
+</body>
+</html>
