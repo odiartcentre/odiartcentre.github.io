@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--    index.html     → artwork.html
-        popup.html     → index.html     -->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,9 +17,9 @@ box-sizing:border-box;
 
 body{
 
-font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 
-background:#f4f6fb;
+background:#fff8f3;
 
 display:flex;
 
@@ -28,143 +27,108 @@ justify-content:center;
 
 align-items:center;
 
-height:100vh;
+min-height:100vh;
 
-overflow:hidden;
+padding:20px;
 
-}
-
-.bg{
-
-position:absolute;
-
-inset:0;
-
-background:
-
-radial-gradient(circle at top,#4f7cff22,transparent 45%),
-
-radial-gradient(circle at bottom,#7b5cff22,transparent 45%),
-
-#f4f6fb;
-
-animation:bg 8s ease-in-out infinite alternate;
-
-}
-
-@keyframes bg{
-
-from{
-
-transform:scale(1);
-
-}
-
-to{
-
-transform:scale(1.08);
-
-}
+color:#222;
 
 }
 
 .modal{
 
-position:relative;
-
-width:min(92%,500px);
+width:100%;
+max-width:520px;
 
 background:#fff;
 
-border-radius:22px;
+border-radius:16px;
 
-padding:40px;
+border:1px solid #ffe2d2;
 
-box-shadow:0 30px 70px rgba(0,0,0,.18);
+box-shadow:0 10px 35px rgba(0,0,0,.12);
+
+overflow:hidden;
+
+}
+
+.top{
+
+background:#FF5F08;
+
+padding:22px;
 
 text-align:center;
 
-animation:popup .45s ease;
-
-z-index:5;
-
-}
-
-@keyframes popup{
-
-from{
-
-opacity:0;
-
-transform:translateY(40px) scale(.92);
-
-}
-
-to{
-
-opacity:1;
-
-transform:none;
-
-}
+color:#fff;
 
 }
 
 .icon{
 
-font-size:60px;
+font-size:52px;
 
-margin-bottom:18px;
-
-animation:pulse 1.6s infinite;
+margin-bottom:10px;
 
 }
 
-@keyframes pulse{
+.logo{
 
-50%{
+font-size:28px;
 
-transform:scale(1.15);
+font-weight:700;
 
 }
+
+.content{
+
+padding:28px;
+
+text-align:center;
 
 }
 
 h1{
 
-font-size:30px;
+font-size:28px;
 
 margin-bottom:18px;
+
+line-height:1.3;
 
 }
 
 p{
 
-font-size:17px;
-
-color:#666;
+font-size:16px;
 
 line-height:1.7;
 
-margin-bottom:28px;
+color:#555;
+
+margin-bottom:24px;
 
 }
 
 .notice{
 
-background:#fff8e7;
+background:#fff7f2;
 
-border:1px solid #f4d36b;
+border:1px solid #ffd5be;
 
-padding:18px;
+border-left:5px solid #FF5F08;
 
-border-radius:12px;
+padding:16px;
+
+border-radius:8px;
 
 font-size:15px;
 
 line-height:1.6;
 
-margin-bottom:30px;
+text-align:left;
+
+margin-bottom:25px;
 
 }
 
@@ -172,27 +136,24 @@ margin-bottom:30px;
 
 display:flex;
 
-gap:14px;
-
-justify-content:center;
-
-flex-wrap:wrap;
+gap:12px;
 
 }
 
-a,button{
+.buttons a,
+.buttons button{
 
-padding:14px 28px;
+flex:1;
 
-border-radius:10px;
+padding:14px;
 
 font-size:16px;
 
 font-weight:600;
 
-cursor:pointer;
+border-radius:8px;
 
-transition:.25s;
+cursor:pointer;
 
 text-decoration:none;
 
@@ -200,41 +161,88 @@ text-decoration:none;
 
 .renew{
 
-background:#0057ff;
+background:#FF5F08;
 
-color:#fff;
-
-}
-
-.renew:hover{
-
-background:#0043cc;
-
-transform:translateY(-2px);
-
-}
-
-.continue{
-
-background:#ececec;
+color:white;
 
 border:none;
 
 }
 
+.renew:hover{
+
+background:#e95500;
+
+}
+
+.continue{
+
+background:white;
+
+border:2px solid #FF5F08;
+
+color:#FF5F08;
+
+}
+
 .continue:hover{
 
-background:#dcdcdc;
+background:#fff5ef;
 
 }
 
 .footer{
 
-margin-top:28px;
+padding:18px;
+
+text-align:center;
 
 font-size:13px;
 
 color:#888;
+
+border-top:1px solid #eee;
+
+}
+
+@media(max-width:600px){
+
+body{
+
+padding:12px;
+
+}
+
+.top{
+
+padding:18px;
+
+}
+
+.logo{
+
+font-size:24px;
+
+}
+
+h1{
+
+font-size:22px;
+
+}
+
+.buttons{
+
+flex-direction:column;
+
+}
+
+.buttons a,
+.buttons button{
+
+width:100%;
+
+}
 
 }
 
@@ -244,20 +252,24 @@ color:#888;
 
 <body>
 
-<div class="bg"></div>
-
 <div class="modal">
 
-<div class="icon">
+<div class="top">
 
+<div class="icon">
 ⚠️
+</div>
+
+<div class="logo">
+Odi Art Centre
+</div>
 
 </div>
 
+<div class="content">
+
 <h1>
-
 Hosting Subscription Expiring Soon
-
 </h1>
 
 <p>
@@ -268,7 +280,9 @@ The digital artwork information service is scheduled to become unavailable unles
 
 <div class="notice">
 
-Visitors can continue viewing the artwork by clicking <b>Continue to Artwork</b>.
+<strong>Notice</strong><br><br>
+
+Visitors may continue viewing artwork by clicking <strong>Continue to Artwork</strong> below. Administrators should renew the hosting subscription to avoid service interruption.
 
 </div>
 
@@ -284,9 +298,7 @@ Renew Now
 
 </a>
 
-<button
-
-class="continue"
+<button class="continue"
 
 onclick="continueArtwork()">
 
@@ -296,9 +308,11 @@ Continue to Artwork
 
 </div>
 
+</div>
+
 <div class="footer">
 
-Cloudflare Digital Collection Cloud
+© Cloudflare Digital Collection Cloud
 
 </div>
 
@@ -308,9 +322,7 @@ Cloudflare Digital Collection Cloud
 
 function continueArtwork(){
 
-const query=window.location.search;
-
-window.location.href="artwork.html"+query;
+window.location.href="artwork.html"+window.location.search;
 
 }
 
